@@ -1,3 +1,4 @@
+-- Users table
 CREATE TYPE user_role AS enum('Admin', 'Customer');
 CREATE TABLE users (
   user_id serial PRIMARY KEY,
@@ -8,7 +9,7 @@ CREATE TABLE users (
   role user_role NOT NULL
 );
 
-
+-- Vehicles table
 CREATE TYPE vehicle_type AS enum('car', 'bike', 'truck');
 CREATE TYPE availability AS enum('available', 'rented', 'maintenance');
 CREATE TABLE vehicles (
@@ -21,7 +22,7 @@ CREATE TABLE vehicles (
   availability_status availability NOT NULL
 );
 
-
+-- Bookings table
 CREATE TYPE booking_status_enum AS enum('pending', 'confirmed', 'completed', 'cancelled');
 CREATE TABLE bookings (
   booking_id serial PRIMARY KEY,
