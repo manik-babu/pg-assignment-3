@@ -93,3 +93,49 @@ WHERE
       bookings.vehicle_id = vehicles.vehicle_id
   );
 ```
+### Query 3: Available Cars
+Find all available cars.
+```sql
+SELECT
+  *
+FROM
+  vehicles
+WHERE
+  availability_status = 'available'
+  AND type = 'car';
+```
+### Query 4: Popular Vehicles
+Find vehicles with more than 2 bookings.
+```sql
+SELECT
+  vehicle_name,
+  count(*) AS total_bookings
+FROM
+  bookings
+  JOIN vehicles USING (vehicle_id)
+GROUP BY
+  vehicle_name
+HAVING
+  count(*) > 2;
+```
+## 📝 Sample Data
+### Insert Sample Users
+```sql
+INSERT INTO users (name, email, password, phone, role) VALUES
+('John Doe', 'john@example.com', 'hashed_pass_123', '+1234567890', 'Admin'),
+('Jane Smith', 'jane@example.com', 'hashed_pass_456', '+1987654321', 'Customer'),
+('Robert Johnson', 'robert@example.com', 'hashed_pass_789', '+1555123456', 'Customer');
+```
+### Insert Sample Vehicles
+```sql
+INSERT INTO vehicles (vehicle_name, type, model, registration_number, rental_price, availability_status) VALUES
+('Toyota Camry', 'car', 2023, 'ABC123', 50, 'available'),
+('Honda Civic', 'car', 2022, 'XYZ789', 45, 'rented'),
+('Ford F-150', 'truck', 2021, 'TRK001', 80, 'available');
+```
+### Insert Sample Bookings
+```sql
+INSERT INTO bookings (user_id, vehicle_id, rent_start_date, rent_end_date, booking_status, total_cost) VALUES
+(2, 1, '2024-01-15', '2024-01-20', 'completed', 250),
+(3, 2, '2024-02-01', '2024-02-05', 'confirmed', 225);
+```
